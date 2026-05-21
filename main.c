@@ -68,7 +68,7 @@ int main() {
 
             case 2:
             while(1) {
-                printf("You are now viewing the products.\n");
+                printf("\nYou are now viewing the products.\n");
                 displayProducts(products, count);
                 printf("==============================\n");
                 printf("Tap 1 to go back to main menu:");
@@ -247,18 +247,18 @@ void buyProduct(Product products[], int count, int *money) {
 }
     printf("Your money now become: PHP %d\n", *money);
      int buyMore, timailhan=0;
-    while(buyMore!=1){
+    while(timailhan!=1){
     printf("\nDo you want to buy another product? (1 for Yes, 0 for No): ");
     scanf("%d", &buyMore);
     
     if(buyMore == 0) {
         timailhan=1;
         break;
-    }else if(buyMore != 1) {
-        printf("Invalid choice in returning to Main Menu...\n");
+    }else if(buyMore == 1) {
+        break;
     }
 }
-if(timailhan==0) {
+if(timailhan==1) {
     printf("Returning to Main Menu...\n");
     break;
 }
@@ -366,6 +366,7 @@ void playMiniGame() {
 }
 void aboutOwner() {
     while(1){
+        int timailhan=0;
     int choice;
     printf("\n===== ABOUT THE PBCT OWNER =====\n");
     printf("Name: Rodel E. Tan, Patricia Obejas, Rhealyn Cabarloc, and NIzzah Bejer\n");
@@ -388,14 +389,33 @@ void aboutOwner() {
 
         printf("Email    : rodeltangwapo28@gmail.com\n");
         printf("Phone    : 0962-825-6419\n");
-        
-        break;
+        while(timailhan!=1){ 
+            int go;
+        printf("\n\n 1 to go back to the previous menu: ");
+        printf("2 to go back to the main menu: ");
+        scanf("%d", &go);
+        if (go == 1) {
+            printf("\nReturning to About the Owner...\n");
+            break;
+
+        }else if(go == 2) {
+            printf("\nReturning to Main Menu...\n");
+            timailhan=1;
+            break;
+        } else {
+            printf("\nInvalid choice.\n");
+        }
+    }
 
     } else if (choice == 2) {
         printf("\nReturning to Main Menu...\n");
         break;
     } else {
         printf("\nInvalid choice.\n");
+    }
+    if(timailhan==1) {
+        printf("Returning to Main Menu...\n");
+        break;
     }
 }
 }
