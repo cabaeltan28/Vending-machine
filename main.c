@@ -266,6 +266,9 @@ if(timailhan==0) {
 }
 
 void viewInventory(int money) {
+    while(1) {
+    printf("\n==================================\n");
+    printf("  You are now viewing your inventory.\n");
     FILE *fp;
     char line[100];
 
@@ -280,6 +283,19 @@ void viewInventory(int money) {
     fclose(fp);
 
     printf("\nRemaining Money: PHP %d\n", money);
+    
+    int choice;
+    
+   
+    printf("\n==============================\n");
+    printf("Tap 1 to go back to main menu:");
+    scanf("%d", &choice);
+    if(choice == 1) {
+        break;
+    }
+    
+    }
+
 }
 
 int loadMoney() {
