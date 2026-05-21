@@ -1,2 +1,9 @@
-Coke - PHP 35 (Quantity: 10)
-Chocolate - PHP 30 (Quantity: 1)
+
+Coke - PHP 35 (Quantity: 2)
+Coke - PHP 35 (Quantity: 2)
+Coke - PHP 35 (Quantity: 1)
+Water - PHP 20 (Quantity: 2)
+Water - PHP 20 (Quantity: 2)
+Coke - PHP 35 (Quantity: 1)
+Coke - PHP 35 (Quantity: 1)
+Water - PHP 20 (Quantity: 1)
