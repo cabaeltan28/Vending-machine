@@ -2,9 +2,9 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define PRODUCT_FILE "products.txt"
-#define INVENTORY_FILE "inventory.txt"
-#define MONEY_FILE "money.txt"
+#define file_products "my_products.txt"
+#define file_inventory "my_inventory.txt"
+#define file_money "my_money.txt"
 
 typedef struct {
     char name[50];
@@ -85,10 +85,10 @@ int main() {
 void initializeFiles() {
     FILE *fp;
 
-    fp = fopen(PRODUCT_FILE, "r");
+    fp = fopen(file_products, "r");
 
     if (fp == NULL) {
-        fp = fopen(PRODUCT_FILE, "w");
+        fp = fopen(file_products, "w");
 
         fprintf(fp, "Coke 35 10\n");
         fprintf(fp, "Water 20 15\n");
@@ -101,19 +101,19 @@ void initializeFiles() {
         fclose(fp);
     }
 
-    fp = fopen(INVENTORY_FILE, "r");
+    fp = fopen(file_inventory, "r");
 
     if (fp == NULL) {
-        fp = fopen(INVENTORY_FILE, "w");
+        fp = fopen(file_inventory, "w");
         fclose(fp);
     } else {
         fclose(fp);
     }
 
-    fp = fopen(MONEY_FILE, "r");
+    fp = fopen(file_money, "r");
 
     if (fp == NULL) {
-        fp = fopen(MONEY_FILE, "w");
+        fp = fopen(file_money, "w");
         fprintf(fp, "500");
         fclose(fp);
     } else {
@@ -123,7 +123,7 @@ void initializeFiles() {
 
 void loadProducts(Product products[], int *count) {
     FILE *fp;
-    fp = fopen(PRODUCT_FILE, "r");
+    fp = fopen(file_products, "r");
 
     *count = 0;
 
@@ -140,7 +140,7 @@ void loadProducts(Product products[], int *count) {
 
 void saveProducts(Product products[], int count) {
     FILE *fp;
-    fp = fopen(PRODUCT_FILE, "w");
+    fp = fopen(file_products, "w");
 
     for(int i = 0; i < count; i++) {
         fprintf(fp, "%s %d %d\n",
@@ -184,7 +184,7 @@ void buyProduct(Product products[], int count, int *money) {
 
     choice--;
     int quantity;
-    printf("Enter %s quantity to buy: ", products[choice].name);
+    printf("Enter how many %s you want to buy: ", products[choice].name);
     scanf("%d", &quantity);
 
     if(products[choice].stock < quantity) {
@@ -204,8 +204,8 @@ void buyProduct(Product products[], int count, int *money) {
     *money -= totalPrice;
     products[choice].stock -= quantity;
 
-    fp = fopen(INVENTORY_FILE, "a");
-
+    fp = fopen(file_inventory, "a");
+    getchar();
     fprintf(fp, "%s - PHP %d (Quantity: %d)\n",
             products[choice].name,
             products[choice].price,
@@ -224,7 +224,7 @@ void viewInventory(int money) {
     FILE *fp;
     char line[100];
 
-    fp = fopen(INVENTORY_FILE, "r");
+    fp = fopen(file_inventory, "r");
 
     printf("\n===== STUDENT INVENTORY =====\n");
 
@@ -241,7 +241,7 @@ int loadMoney() {
     FILE *fp;
     int money;
 
-    fp = fopen(MONEY_FILE, "r");
+    fp = fopen(file_money, "r");
 
     fscanf(fp, "%d", &money);
 
@@ -253,7 +253,7 @@ int loadMoney() {
 void saveMoney(int money) {
     FILE *fp;
 
-    fp = fopen(MONEY_FILE, "w");
+    fp = fopen(file_money, "w");
 
     fprintf(fp, "%d", money);
 
