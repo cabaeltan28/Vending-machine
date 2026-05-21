@@ -183,29 +183,40 @@ void buyProduct(Product products[], int count, int *money) {
     }
 
     choice--;
+    int quantity;
+    printf("Enter %s quantity to buy: ", products[choice].name);
+    scanf("%d", &quantity);
 
-    if(products[choice].stock <= 0) {
-        printf("Product out of stock.\n");
+    if(products[choice].stock < quantity) {
+        if(products[choice].stock == 0) {
+            printf("%s is out of stock!\n", products[choice].name);
+        } else {
+            printf("%s out of stock! There are only %d left.\n", products[choice].name, products[choice].stock);
+        }
         return;
     }
-
-    if(*money < products[choice].price) {
+    int totalPrice = products[choice].price * quantity;
+    if(*money < totalPrice) {
         printf("Not enough money.\n");
         return;
     }
 
-    *money -= products[choice].price;
-    products[choice].stock--;
+    *money -= totalPrice;
+    products[choice].stock -= quantity;
 
     fp = fopen(INVENTORY_FILE, "a");
 
-    fprintf(fp, "%s - PHP %d\n",
+    fprintf(fp, "%s - PHP %d (Quantity: %d)\n",
             products[choice].name,
-            products[choice].price);
+            products[choice].price,
+            quantity);
 
     fclose(fp);
-
-    printf("You bought %s.\n", products[choice].name);
+    if(quantity== 1) {
+        printf("You bought %d %s.\n", quantity, products[choice].name);
+    }else{
+    printf("You bought %d %ss.\n", quantity, products[choice].name);
+}
     printf("Remaining Money: PHP %d\n", *money);
 }
 

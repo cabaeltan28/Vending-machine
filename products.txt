@@ -1,5 +1,5 @@
-Coke 35 10
+Coke 35 1
 Water 20 15
 Chips 25 12
-Chocolate 30 8
-Sandwich 50 5
+Chocolate 30 7
+Sandwich 50 15
